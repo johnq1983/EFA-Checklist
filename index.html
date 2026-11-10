@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3‑in‑1 Checklist · Preflight · Postflight · Secure</title>
+    <style>
+        /* ---------- THEME VARIABLES ---------- */
+        :root {
+            --bg-gradient: linear-gradient(145deg, #f0f4fa 0%, #d9e2ef 100%);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-border: rgba(255, 255, 255, 0.6);
+            --text-primary: #0b2b3d;
+            --text-secondary: #2c4b5e;
+            --accent: #3a7ca5;
+            --accent-dark: #1e4a64;
+            --tab-bg: rgba(255, 255, 255, 0.5);
+            --tab-text: #1c3c4f;
+            --tab-hover: rgba(58, 124, 165, 0.12);
+            --tab-active-bg: #1e4a64;
+            --tab-active-text: #ffffff;
+            --panel-bg: #ffffff;
+            --panel-border: rgba(255, 255, 255, 0.9);
+            --header-border: #cbdae6;
+            --badge-bg: #e3eef7;
+            --badge-text: #1d4e6b;
+            --item-bg: #f9fcff;
+            --item-hover-bg: #e7f0f8;
+            --item-hover-border: #bed9ec;
+            --item-done-bg: #ecf7ef;
+            --item-done-border: #b6dfc5;
+            --item-text: #153b4b;
+            --item-done-text: #577a6b;
+            --checkbox-accent: #1e6f5c;
+            --reset-border: #9db9ce;
+            --reset-text: #1e4a64;
+            --reset-hover-bg: #1e4a64;
+            --reset-hover-text: #ffffff;
+            --footer-text: #5f7f94;
+            --shadow-card: 0 20px 40px rgba(0, 20, 30, 0.25), 0 6px 12px rgba(0, 0, 0, 0.1);
+            --shadow-panel: inset 0 1px 4px rgba(0, 0, 0, 0.02), 0 12px 24px -12px rgba(0, 30, 50, 0.3);
+            --shadow-tab-active: 0 12px 18px -8px rgba(20, 60, 90, 0.5);
+            --shadow-reset-hover: 0 6px 12px rgba(30, 74, 100, 0.25);
+            --toggle-bg: rgba(255, 255, 255, 0.6);
+            --toggle-border: rgba(0, 0, 0, 0.1);
+            --toggle-icon: #1e4a64;
+            /* Notes button */
+            --notes-btn-bg: #eef4fa;
+            --notes-btn-border: #cbdae6;
+            --notes-btn-text: #1d4e6b;
+            --notes-btn-hover: #dce9f5;
+            --notes-btn-active-bg: #1e4a64;
+            --notes-btn-active-text: #ffffff;
+            /* Notes page */
+            --notes-bg: #ffffff;
+            --notes-border: #cbdae6;
+            --notes-input-bg: #f9fcff;
+            --notes-input-text: #153b4b;
+            --notes-canvas-bg: #ffffff;
+            --notes-canvas-border: #cbdae6;
+            --notes-toolbar-bg: #eef4fa;
+            --notes-tool-bg: #e3eef7;
+            --notes-tool-text: #1d4e6b;
+            --notes-tool-hover: #cfe2f0;
+        }
+
+        [data-theme="night"] {
+            --bg-gradient: linear-gradient(145deg, #0d1a24 0%, #122b3a 100%);
+            --card-bg: rgba(18, 34, 46, 0.85);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #d9e8f2;
+            --text-secondary: #9fb9ca;
+            --accent: #4a9fd1;
+            --accent-dark: #2a6a8f;
+            --tab-bg: rgba(0, 0, 0, 0.25);
+            --tab-text: #a8c4d6;
+            --tab-hover: rgba(74, 159, 209, 0.18);
+            --tab-active-bg: #2a6a8f;
+            --tab-active-text: #ffffff;
+            --panel-bg: #16293a;
+            --panel-border: rgba(255, 255, 255, 0.06);
+            --header-border: #2c4458;
+            --badge-bg: #1f3b4f;
+            --badge-text: #a8d0e8;
+            --item-bg: #1a2f40;
+            --item-hover-bg: #203a4e;
+            --item-hover-border: #2f5a75;
+            --item-done-bg: #1c3d33;
+            --item-done-border: #2e6b52;
+            --item-text: #c9dce8;
+            --item-done-text: #6e9e88;
+            --checkbox-accent: #2fbf8f;
+            --reset-border: #3e6a82;
+            --reset-text: #a8c4d6;
+            --reset-hover-bg: #2a6a8f;
+            --reset-hover-text: #ffffff;
+            --footer-text: #6b8ba0;
+            --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.55), 0 6px 12px rgba(0, 0, 0, 0.35);
+            --shadow-panel: inset 0 1px 4px rgba(0, 0, 0, 0.25), 0 12px 24px -12px rgba(0, 0, 0, 0.6);
+            --shadow-tab-active: 0 12px 18px -8px rgba(0, 0, 0, 0.7);
+            --shadow-reset-hover: 0 6px 12px rgba(0, 0, 0, 0.5);
+            --toggle-bg: rgba(255, 255, 255, 0.1);
+            --toggle-border: rgba(255, 255, 255, 0.15);
+            --toggle-icon: #e8d88a;
+            /* Notes button */
+            --notes-btn-bg: #1f3b4f;
+            --notes-btn-border: #2c4458;
+            --notes-btn-text: #a8d0e8;
+            --notes-btn-hover: #2a5068;
+            --notes-btn-active-bg: #2a6a8f;
+            --notes-btn-active-text: #ffffff;
+            /* Notes page */
+            --notes-bg: #16293a;
+            --notes-border: #2c4458;
+            --notes-input-bg: #1a2f40;
+            --notes-input-text: #c9dce8;
+            --notes-canvas-bg: #1e3448;
+            --notes-canvas-border: #2c4458;
+            --notes-toolbar-bg: #1f3b4f;
+            --notes-tool-bg: #1f3b4f;
+            --notes-tool-text: #a8d0e8;
+            --notes-tool-hover: #2a5068;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1.5rem;
+            transition: background 0.5s ease;
+        }
+
+        .app-card {
+            max-width: 900px;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 2.5rem;
+            box-shadow: var(--shadow-card);
+            padding: 2rem 2rem 2.5rem;
+            border: 1px solid var(--card-border);
+            transition: all 0.5s ease;
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        /* ---------- THEME TOGGLE ---------- */
+        .theme-toggle {
+            position: absolute;
+            top: 1.6rem;
+            right: 1.8rem;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: 1px solid var(--toggle-border);
+            background: var(--toggle-bg);
+            backdrop-filter: blur(6px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            color: var(--toggle-icon);
+            z-index: 10;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+            transition: color 0.5s ease;
+        }
+
+        h1 span {
+            background: var(--text-primary);
+            color: var(--card-bg);
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            opacity: 0.9;
+            transition: all 0.5s ease;
+        }
+
+        .subhead {
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1rem;
+            transition: all 0.5s ease;
+        }
+
+        /* Checklist tabs */
+        .checklist-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            background: var(--tab-bg);
+            padding: 0.7rem;
+            border-radius: 4rem;
+            backdrop-filter: blur(4px);
+            transition: background 0.5s ease;
+        }
+
+        .tab-btn {
+            flex: 1 1 140px;
+            padding: 1rem 1.2rem;
+            border: none;
+            border-radius: 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: transparent;
+            color: var(--tab-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            letter-spacing: 0.02em;
+            border: 1px solid transparent;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .tab-btn i {
+            font-size: 1.5rem;
+            font-style: normal;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+
+        .tab-btn:hover {
+            background: var(--tab-hover);
+            transform: scale(0.98);
+        }
+
+        .tab-btn.active {
+            background: var(--tab-active-bg);
+            color: var(--tab-active-text);
+            box-shadow: var(--shadow-tab-active);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .tab-btn.active i {
+            filter: brightness(1.2);
+        }
+
+        /* ---------- FULL-WIDTH NOTES BUTTON ---------- */
+        .notes-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            padding: 0.95rem 1.2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 3rem;
+            border: 1.5px solid var(--notes-btn-border);
+            background: var(--notes-btn-bg);
+            color: var(--notes-btn-text);
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .notes-button:hover {
+            background: var(--notes-btn-hover);
+            transform: scale(0.985);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .notes-button.active {
+            background: var(--notes-btn-active-bg);
+            color: var(--notes-btn-active-text);
+            border-color: var(--notes-btn-active-bg);
+            box-shadow: var(--shadow-tab-active);
+        }
+
+        .notes-button .notes-count {
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0.15rem 0.6rem;
+            border-radius: 1rem;
+            opacity: 0.9;
+        }
+
+        .notes-button.active .notes-count {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .notes-button .notes-count:empty,
+        .notes-button .notes-count.hidden {
+            display: none;
+        }
+
+        /* Checklist container */
+        .checklist-panel {
+            background: var(--panel-bg);
+            border-radius: 2rem;
+            padding: 1.8rem 2rem 1.4rem;
+            box-shadow: var(--shadow-panel);
+            border: 1px solid var(--panel-border);
+            transition: all 0.5s ease;
+        }
+
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px dashed var(--header-border);
+            padding-bottom: 1rem;
+            margin-bottom: 1.4rem;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            transition: border-color 0.5s ease;
+        }
+
+        .list-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.5s ease;
+        }
+
+        .progress-badge {
+            background: var(--badge-bg);
+            padding: 0.4rem 1.1rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--badge-text);
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.5s ease;
+        }
+
+        .checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 1.2rem;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid transparent;
+            background: var(--item-bg);
+            margin-bottom: 0.2rem;
+        }
+
+        .check-item:hover {
+            background: var(--item-hover-bg);
+            border-color: var(--item-hover-border);
+        }
+
+        .check-item.completed {
+            background: var(--item-done-bg);
+            border-color: var(--item-done-border);
+        }
+
+        .check-item.completed .item-text {
+            text-decoration: line-through;
+            color: var(--item-done-text);
+            opacity: 0.8;
+        }
+
+        .check-item input[type="checkbox"] {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 1rem;
+            accent-color: var(--checkbox-accent);
+            cursor: pointer;
+            border-radius: 0.4rem;
+            flex-shrink: 0;
+            transition: transform 0.1s;
+            pointer-events: none;
+        }
+
+        .item-text {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--item-text);
+            transition: all 0.3s ease;
+            line-height: 1.3;
+        }
+
+        /* ---------- NOTES PAGE ---------- */
+        .notes-page {
+            background: var(--notes-bg);
+            border-radius: 2rem;
+            padding: 1.6rem 1.8rem 1.8rem;
+            border: 1px solid var(--notes-border);
+            box-shadow: var(--shadow-panel);
+            transition: all 0.5s ease;
+        }
+
+        .notes-page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed var(--header-border);
+            padding-bottom: 0.9rem;
+            margin-bottom: 1.3rem;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            transition: border-color 0.5s ease;
+        }
+
+        .notes-page-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.5s ease;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1.5px solid var(--reset-border);
+            color: var(--reset-text);
+            padding: 0.5rem 1.2rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .back-btn:hover {
+            background: var(--reset-hover-bg);
+            color: var(--reset-hover-text);
+            border-color: var(--reset-hover-bg);
+            transform: scale(0.97);
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 700px) {
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .notes-block {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .notes-block label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+            transition: color 0.5s ease;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 200px;
+            resize: vertical;
+            padding: 0.9rem 1rem;
+            border-radius: 1rem;
+            border: 1px solid var(--notes-border);
+            background: var(--notes-input-bg);
+            color: var(--notes-input-text);
+            font-size: 1rem;
+            line-height: 1.5;
+            font-family: inherit;
+            transition: all 0.5s ease;
+            outline: none;
+        }
+
+        .notes-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(58, 124, 165, 0.15);
+        }
+
+        .notes-textarea::placeholder {
+            color: var(--footer-text);
+            opacity: 0.6;
+        }
+
+        /* Handwriting canvas block */
+        .handwriting-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--notes-canvas-border);
+            background: var(--notes-canvas-bg);
+            transition: all 0.5s ease;
+        }
+
+        .notes-canvas {
+            display: block;
+            width: 100%;
+            height: 200px;
+            touch-action: none;
+            cursor: crosshair;
+            background: var(--notes-canvas-bg);
+            transition: background 0.5s ease;
+        }
+
+        .canvas-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            align-items: center;
+            background: var(--notes-toolbar-bg);
+            padding: 0.4rem 0.6rem;
+            border-radius: 0.8rem;
+            transition: background 0.5s ease;
+        }
+
+        .tool-btn {
+            border: none;
+            background: var(--notes-tool-bg);
+            color: var(--notes-tool-text);
+            padding: 0.35rem 0.7rem;
+            border-radius: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.2s ease;
+        }
+
+        .tool-btn:hover {
+            background: var(--notes-tool-hover);
+            transform: scale(0.97);
+        }
+
+        .tool-btn:active {
+            transform: scale(0.94);
+        }
+
+        .color-swatch {
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            padding: 0;
+            flex-shrink: 0;
+        }
+
+        .color-swatch.active {
+            border-color: var(--text-primary);
+            transform: scale(1.12);
+            box-shadow: 0 0 0 2px var(--notes-canvas-bg), 0 0 0 4px var(--accent);
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+
+        .size-select {
+            border: none;
+            background: var(--notes-tool-bg);
+            color: var(--notes-tool-text);
+            padding: 0.3rem 0.5rem;
+            border-radius: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .size-select:hover {
+            background: var(--notes-tool-hover);
+        }
+
+        /* Notes action row */
+        .notes-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.7rem;
+            margin-top: 1.3rem;
+            flex-wrap: wrap;
+        }
+
+        .snapshot-btn {
+            background: var(--tab-active-bg);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.6rem;
+            border-radius: 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .snapshot-btn:hover {
+            filter: brightness(1.1);
+            transform: scale(0.98);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .snapshot-btn:active {
+            transform: scale(0.95);
+        }
+
+        .clear-notes-btn {
+            background: transparent;
+            border: 1.5px solid var(--notes-border);
+            color: var(--text-primary);
+            padding: 0.75rem 1.4rem;
+            border-radius: 3rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .clear-notes-btn:hover {
+            background: var(--notes-tool-hover);
+        }
+
+        /* reset buttons (main) */
+        .reset-area {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .reset-btn {
+            background: transparent;
+            border: 1.5px solid var(--reset-border);
+            color: var(--reset-text);
+            padding: 0.8rem 2rem;
+            border-radius: 3rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .reset-btn:hover {
+            background: var(--reset-hover-bg);
+            color: var(--reset-hover-text);
+            border-color: var(--reset-hover-bg);
+            box-shadow: var(--shadow-reset-hover);
+            transform: scale(0.97);
+        }
+
+        .reset-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* footer note */
+        .footer-note {
+            text-align: center;
+            margin-top: 1.2rem;
+            font-size: 0.8rem;
+            color: var(--footer-text);
+            opacity: 0.8;
+            letter-spacing: 0.3px;
+            transition: color 0.5s ease;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* smooth theme transition */
+        .app-card, .tab-btn, .checklist-panel, .check-item, .reset-btn,
+        .progress-badge, .list-header, h1, .subhead, .footer-note,
+        .theme-toggle, .checklist-tabs, h1 span, .notes-page,
+        .notes-textarea, .notes-canvas, .canvas-toolbar, .tool-btn,
+        .size-select, .color-swatch, .snapshot-btn, .clear-notes-btn,
+        .notes-button, .back-btn, .notes-page-header {
+            transition-property: background, color, border-color, box-shadow;
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-card">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle day/night theme" title="Toggle day/night">
+            🌙
+        </button>
+
+        <h1>
+            ✈️ Checklist <span>3×</span>
+        </h1>
+        <div class="subhead">
+            Preflight · Postflight · Secure — tap to check off
+        </div>
+
+        <!-- TABS -->
+        <div class="checklist-tabs">
+            <button class="tab-btn active" data-list="preflight">
+                <i>🛫</i> Preflight
+            </button>
+            <button class="tab-btn" data-list="postflight">
+                <i>🛬</i> Postflight
+            </button>
+            <button class="tab-btn" data-list="secure">
+                <i>🔒</i> Secure
+            </button>
+        </div>
+
+        <!-- FULL-WIDTH NOTES BUTTON directly under the tabs -->
+        <button class="notes-button" id="notesButton">
+            📝 Notes
+            <span class="notes-count hidden" id="notesCount"></span>
+        </button>
+
+        <!-- CHECKLIST VIEW -->
+        <div id="checklistView">
+            <div class="checklist-panel">
+                <div id="checklistContent">
+                    <!-- dynamic content injected -->
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTES PAGE (hidden until notes button is clicked) -->
+        <div id="notesView" class="notes-page hidden">
+            <div class="notes-page-header">
+                <h2>📝 Notes <span id="notesPageListLabel" style="font-size:1rem;font-weight:400;opacity:0.7;"></span></h2>
+                <button class="back-btn" id="backToChecklistBtn">← Back to checklist</button>
+            </div>
+
+            <div class="notes-grid">
+                <!-- Typed notes -->
+                <div class="notes-block">
+                    <label for="typedNotes">Typed notes</label>
+                    <textarea
+                        id="typedNotes"
+                        class="notes-textarea"
+                        placeholder="Type your notes here…"
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+
+                <!-- Handwritten notes -->
+                <div class="notes-block">
+                    <label>Handwritten notes</label>
+                    <div class="handwriting-wrapper">
+                        <div class="canvas-toolbar">
+                            <button class="tool-btn" id="penBtn" title="Pen tool">✏️ Pen</button>
+                            <button class="tool-btn" id="eraserBtn" title="Eraser tool">🧽 Eraser</button>
+                            <select class="size-select" id="sizeSelect" title="Stroke size">
+                                <option value="2">Thin</option>
+                                <option value="4" selected>Normal</option>
+                                <option value="8">Thick</option>
+                                <option value="16">Bold</option>
+                            </select>
+                            <span style="margin-left:auto; display:flex; gap:0.3rem; align-items:center;">
+                                <button class="color-swatch active" data-color="#1e4a64" style="background:#1e4a64;" title="Dark blue"></button>
+                                <button class="color-swatch" data-color="#c0392b" style="background:#c0392b;" title="Red"></button>
+                                <button class="color-swatch" data-color="#1e8449" style="background:#1e8449;" title="Green"></button>
+                                <button class="color-swatch" data-color="#8e44ad" style="background:#8e44ad;" title="Purple"></button>
+                                <button class="color-swatch" data-color="#d35400" style="background:#d35400;" title="Orange"></button>
+                                <button class="color-swatch" data-color="#ffffff" style="background:#ffffff; border:1px solid #ccc;" title="White"></button>
+                                <button class="color-swatch" data-color="#000000" style="background:#000000;" title="Black"></button>
+                            </span>
+                            <button class="tool-btn" id="undoBtn" title="Undo last stroke">↶ Undo</button>
+                            <button class="tool-btn" id="clearCanvasBtn" title="Clear handwriting">🗑 Clear</button>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="notesCanvas" class="notes-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-actions">
+                <button class="clear-notes-btn" id="clearNotesBtn">Clear notes</button>
+                <button class="snapshot-btn" id="snapshotBtn">📸 Save as screenshot</button>
+            </div>
+        </div>
+
+        <!-- RESET CONTROLS (only shown on checklist view) -->
+        <div class="reset-area" id="resetArea">
+            <button class="reset-btn" id="resetCurrentBtn">↻ Reset current list</button>
+            <button class="reset-btn" id="resetAllBtn">⟲ Reset all lists</button>
+        </div>
+        <div class="footer-note">
+            Progress &amp; notes are saved locally in this browser
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- DATA ----------
+            const CHECKLIST_DATA = {
+                preflight: {
+                    title: 'Preflight',
+                    icon: '🛫',
+                    items: [
+                        { id: 'pre-1', text: 'Checks FIDS' },
+                        { id: 'pre-2', text: 'GD and associated paperwork' },
+                        { id: 'pre-3', text: 'Aircraft serviceability' },
+                        { id: 'pre-4', text: 'Fuel check' },
+                        { id: 'pre-5', text: 'Flightplan check' },
+                        { id: 'pre-6', text: 'Clearance check' },
+                        { id: 'pre-7', text: 'CWTO+' },
+                        { id: 'pre-8', text: 'HF check' },
+                        { id: 'pre-9', text: 'Final accepted' },
+                        { id: 'pre-10', text: 'Data check' },
+                    ]
+                },
+                postflight: {
+                    title: 'Postflight',
+                    icon: '🛬',
+                    items: [
+                        { id: 'post-1', text: 'Etechlog' },
+                        { id: 'post-2', text: 'Plan' },
+                        { id: 'post-3', text: 'Post flight' },
+                        { id: 'post-4', text: 'Clear cpdlc/mcdu' },
+                        { id: 'post-5', text: 'Arrival fuel' },
+                        { id: 'post-6', text: 'Intelex' },
+                        { id: 'post-7', text: 'Lights, dim, radios, speaker' },
+                    ]
+                },
+                secure: {
+                    title: 'Secure',
+                    icon: '🔒',
+                    items: [
+                        { id: 'sec-1', text: 'Park brake on' },
+                        { id: 'sec-2', text: 'Crew O2 off' },
+                        { id: 'sec-3', text: 'ADIRS' },
+                        { id: 'sec-4', text: 'Lights' },
+                        { id: 'sec-5', text: 'Bleed' },
+                        { id: 'sec-6', text: 'External power' },
+                        { id: 'sec-7', text: 'APU' },
+                        { id: 'sec-8', text: 'Batteries' },
+                    ]
+                }
+            };
+
+            // ---------- STATE ----------
+            let checkedState = {
+                preflight: new Set(),
+                postflight: new Set(),
+                secure: new Set()
+            };
+
+            let typedNotes = { preflight: '', postflight: '', secure: '' };
+            let handwrittenNotes = { preflight: null, postflight: null, secure: null };
+
+            let activeList = 'preflight';
+            let notesPageOpen = false;
+
+            // Drawing state
+            let drawing = false;
+            let currentTool = 'pen';
+            let currentColor = '#1e4a64';
+            let currentSize = 4;
+            let lastX = 0, lastY = 0;
+            let canvasStrokes = [];
+
+            // ---------- DOM ----------
+            const tabs = document.querySelectorAll('.tab-btn');
+            const checklistContent = document.getElementById('checklistContent');
+            const resetCurrentBtn = document.getElementById('resetCurrentBtn');
+            const resetAllBtn = document.getElementById('resetAllBtn');
+            const themeToggle = document.getElementById('themeToggle');
+
+            const checklistView = document.getElementById('checklistView');
+            const notesView = document.getElementById('notesView');
+            const resetArea = document.getElementById('resetArea');
+            const notesButton = document.getElementById('notesButton');
+            const notesCount = document.getElementById('notesCount');
+            const backToChecklistBtn = document.getElementById('backToChecklistBtn');
+            const notesPageListLabel = document.getElementById('notesPageListLabel');
+
+            const typedNotesEl = document.getElementById('typedNotes');
+            const canvas = document.getElementById('notesCanvas');
+            const ctx = canvas.getContext('2d');
+
+            const penBtn = document.getElementById('penBtn');
+            const eraserBtn = document.getElementById('eraserBtn');
+            const sizeSelect = document.getElementById('sizeSelect');
+            const colorSwatches = document.querySelectorAll('.color-swatch');
+            const undoBtn = document.getElementById('undoBtn');
+            const clearCanvasBtn = document.getElementById('clearCanvasBtn');
+            const clearNotesBtn = document.getElementById('clearNotesBtn');
+            const snapshotBtn = document.getElementById('snapshotBtn');
+
+            // ---------- PERSISTENCE ----------
+            const STORAGE_KEY = 'checklist_app_state_v1';
+            const THEME_KEY = 'checklist_app_theme';
+            const NOTES_KEY = 'checklist_app_notes_v2';
+
+            function saveStateToLocalStorage() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                        preflight: Array.from(checkedState.preflight),
+                        postflight: Array.from(checkedState.postflight),
+                        secure: Array.from(checkedState.secure)
+                    }));
+                } catch (e) { console.warn(e); }
+            }
+
+            function loadStateFromLocalStorage() {
+                try {
+                    const stored = localStorage.getItem(STORAGE_KEY);
+                    if (!stored) return;
+                    const parsed = JSON.parse(stored);
+                    for (const k of ['preflight', 'postflight', 'secure']) {
+                        if (Array.isArray(parsed[k])) {
+                            const valid = new Set(CHECKLIST_DATA[k].items.map(i => i.id));
+                            checkedState[k] = new Set(parsed[k].filter(id => valid.has(id)));
+                        }
+                    }
+                } catch (e) { console.warn(e); }
+            }
+
+            function saveNotesToLocalStorage() {
+                try {
+                    localStorage.setItem(NOTES_KEY, JSON.stringify({
+                        typed: typedNotes,
+                        handwritten: handwrittenNotes
+                    }));
+                } catch (e) { console.warn('Notes save failed', e); }
+            }
+
+            function loadNotesFromLocalStorage() {
+                try {
+                    const stored = localStorage.getItem(NOTES_KEY);
+                    if (!stored) return;
+                    const parsed = JSON.parse(stored);
+                    if (parsed.typed) {
+                        for (const k of ['preflight', 'postflight', 'secure']) {
+                            if (typeof parsed.typed[k] === 'string') typedNotes[k] = parsed.typed[k];
+                        }
+                    }
+                    if (parsed.handwritten) {
+                        for (const k of ['preflight', 'postflight', 'secure']) {
+                            if (typeof parsed.handwritten[k] === 'string') handwrittenNotes[k] = parsed.handwritten[k];
+                        }
+                    }
+                } catch (e) { console.warn(e); }
+            }
+
+            // ---------- THEME ----------
+            function applyTheme(theme) {
+                if (theme === 'night') {
+                    document.documentElement.setAttribute('data-theme', 'night');
+                    themeToggle.textContent = '☀️';
+                    themeToggle.title = 'Switch to day theme';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    themeToggle.textContent = '🌙';
+                    themeToggle.title = 'Switch to night theme';
+                }
+                try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+                if (notesPageOpen) redrawCanvasFromSaved();
+            }
+
+            function initTheme() {
+                let saved = null;
+                try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
+                if (saved === 'night' || saved === 'day') {
+                    applyTheme(saved);
+                } else {
+                    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    applyTheme(prefersDark ? 'night' : 'day');
+                }
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const isNight = document.documentElement.getAttribute('data-theme') === 'night';
+                applyTheme(isNight ? 'day' : 'night');
+            });
+
+            // ---------- NOTES COUNT ----------
+            function updateNotesCount() {
+                const typed = (typedNotes[activeList] || '').trim();
+                const hasHandwriting = !!handwrittenNotes[activeList];
+                let count = 0;
+                if (typed) count += 1;
+                if (hasHandwriting) count += 1;
+                if (count > 0) {
+                    notesCount.textContent = count;
+                    notesCount.classList.remove('hidden');
+                } else {
+                    notesCount.textContent = '';
+                    notesCount.classList.add('hidden');
+                }
+            }
+
+            // ---------- RENDER CHECKLIST ----------
+            function renderChecklist() {
+                const list = CHECKLIST_DATA[activeList];
+                if (!list) return;
+                const checkedSet = checkedState[activeList];
+                const total = list.items.length;
+                const done = checkedSet.size;
+
+                let itemsHtml = '';
+                list.items.forEach(item => {
+                    const isChecked = checkedSet.has(item.id);
+                    itemsHtml += `
+                        <label class="check-item ${isChecked ? 'completed' : ''}" data-item-id="${item.id}">
+                            <input type="checkbox" ${isChecked ? 'checked' : ''} data-item-id="${item.id}">
+                            <span class="item-text">${item.text}</span>
+                        </label>
+                    `;
+                });
+
+                checklistContent.innerHTML = `
+                    <div class="list-header">
+                        <h2>${list.icon} ${list.title}</h2>
+                        <div class="progress-badge" id="progressBadge">${done} / ${total} done</div>
+                    </div>
+                    <div class="checklist-items" id="checklistItems">${itemsHtml}</div>
+                `;
+
+                updateNotesCount();
+            }
+
+            function updateProgress() {
+                const list = CHECKLIST_DATA[activeList];
+                const checkedSet = checkedState[activeList];
+                const badge = document.getElementById('progressBadge');
+                if (badge) badge.textContent = `${checkedSet.size} / ${list.items.length} done`;
+                document.querySelectorAll('.check-item').forEach(label => {
+                    const id = label.dataset.itemId;
+                    const checked = checkedSet.has(id);
+                    label.classList.toggle('completed', checked);
+                    const cb = label.querySelector('input');
+                    if (cb) cb.checked = checked;
+                });
+            }
+
+            checklistContent.addEventListener('change', (e) => {
+                const cb = e.target;
+                if (!cb.matches('input[type="checkbox"]')) return;
+                const id = cb.dataset.itemId;
+                const set = checkedState[activeList];
+                if (cb.checked) set.add(id); else set.delete(id);
+                saveStateToLocalStorage();
+                updateProgress();
+            });
+
+            // ---------- VIEW SWITCHING ----------
+            function showChecklistView() {
+                notesPageOpen = false;
+                checklistView.classList.remove('hidden');
+                notesView.classList.add('hidden');
+                resetArea.classList.remove('hidden');
+                notesButton.classList.remove('active');
+                renderChecklist();
+            }
+
+            function showNotesView() {
+                notesPageOpen = true;
+                checklistView.classList.add('hidden');
+                notesView.classList.remove('hidden');
+                resetArea.classList.add('hidden');
+                notesButton.classList.add('active');
+
+                const list = CHECKLIST_DATA[activeList];
+                notesPageListLabel.textContent = `— ${list.icon} ${list.title}`;
+
+                typedNotesEl.value = typedNotes[activeList] || '';
+
+                requestAnimationFrame(() => {
+                    resizeCanvas();
+                    redrawCanvasFromSaved();
+                });
+            }
+
+            notesButton.addEventListener('click', () => {
+                if (!notesPageOpen) {
+                    showNotesView();
+                } else {
+                    showChecklistView();
+                }
+            });
+
+            backToChecklistBtn.addEventListener('click', () => {
+                showChecklistView();
+            });
+
+            // ---------- TAB SWITCHING ----------
+            function setActiveList(key) {
+                if (!CHECKLIST_DATA[key]) return;
+                activeList = key;
+                tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.list === key));
+
+                if (notesPageOpen) {
+                    typedNotesEl.value = typedNotes[activeList] || '';
+                    notesPageListLabel.textContent = `— ${CHECKLIST_DATA[activeList].icon} ${CHECKLIST_DATA[activeList].title}`;
+                    redrawCanvasFromSaved();
+                    updateNotesCount();
+                } else {
+                    renderChecklist();
+                }
+            }
+
+            tabs.forEach(btn => {
+                btn.addEventListener('click', () => setActiveList(btn.dataset.list));
+            });
+
+            // ---------- NOTES: typed ----------
+            typedNotesEl.addEventListener('input', () => {
+                typedNotes[activeList] = typedNotesEl.value;
+                saveNotesToLocalStorage();
+                updateNotesCount();
+            });
+
+            // ---------- NOTES: canvas ----------
+            function resizeCanvas() {
+                const rect = canvas.getBoundingClientRect();
+                if (rect.width === 0) return;
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                redrawCanvasFromSaved();
+            }
+
+            function fillCanvasBackground() {
+                const rect = canvas.getBoundingClientRect();
+                const styles = getComputedStyle(document.documentElement);
+                const bg = styles.getPropertyValue('--notes-canvas-bg').trim() || '#ffffff';
+                ctx.save();
+                ctx.fillStyle = bg;
+                ctx.fillRect(0, 0, rect.width, rect.height);
+                ctx.restore();
+            }
+
+            function redrawCanvasFromSaved() {
+                const rect = canvas.getBoundingClientRect();
+                if (rect.width === 0) return;
+                const dpr = window.devicePixelRatio || 1;
+                const w = rect.width;
+                const h = rect.height;
+
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                ctx.clearRect(0, 0, w, h);
+                fillCanvasBackground();
+
+                const data = handwrittenNotes[activeList];
+                if (data) {
+                    const img = new Image();
+                    img.onload = () => {
+                        ctx.drawImage(img, 0, 0, w, h);
+                    };
+                    img.src = data;
+                }
+            }
+
+            function captureCanvas() {
+                const rect = canvas.getBoundingClientRect();
+                if (rect.width === 0) return;
+                const dpr = window.devicePixelRatio || 1;
+                const w = rect.width;
+                const h = rect.height;
+
+                const off = document.createElement('canvas');
+                off.width = w * dpr;
+                off.height = h * dpr;
+                const offCtx = off.getContext('2d');
+                offCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+                const styles = getComputedStyle(document.documentElement);
+                const bg = styles.getPropertyValue('--notes-canvas-bg').trim() || '#ffffff';
+                offCtx.fillStyle = bg;
+                offCtx.fillRect(0, 0, w, h);
+                offCtx.drawImage(canvas, 0, 0, w, h);
+
+                handwrittenNotes[activeList] = off.toDataURL('image/png');
+                saveNotesToLocalStorage();
+                updateNotesCount();
+            }
+
+            function getPos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return { x: clientX - rect.left, y: clientY - rect.top };
+            }
+
+            function startDraw(e) {
+                e.preventDefault();
+                drawing = true;
+                const pos = getPos(e);
+                lastX = pos.x;
+                lastY = pos.y;
+
+                const snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                canvasStrokes.push(snapshot);
+                if (canvasStrokes.length > 30) canvasStrokes.shift();
+
+                ctx.beginPath();
+                ctx.arc(lastX, lastY, currentSize / 2, 0, Math.PI * 2);
+                if (currentTool === 'eraser') {
+                    ctx.globalCompositeOperation = 'destination-out';
+                    ctx.fillStyle = 'rgba(0,0,0,1)';
+                } else {
+                    ctx.globalCompositeOperation = 'source-over';
+                    ctx.fillStyle = currentColor;
+                }
+                ctx.fill();
+                ctx.beginPath();
+                ctx.globalCompositeOperation = 'source-over';
+            }
+
+            function draw(e) {
+                if (!drawing) return;
+                e.preventDefault();
+                const pos = getPos(e);
+                const x = pos.x, y = pos.y;
+
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(x, y);
+
+                if (currentTool === 'eraser') {
+                    ctx.globalCompositeOperation = 'destination-out';
+                    ctx.strokeStyle = 'rgba(0,0,0,1)';
+                    ctx.lineWidth = currentSize * 2.5;
+                } else {
+                    ctx.globalCompositeOperation = 'source-over';
+                    ctx.strokeStyle = currentColor;
+                    ctx.lineWidth = currentSize;
+                }
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.stroke();
+
+                lastX = x;
+                lastY = y;
+            }
+
+            function endDraw(e) {
+                if (!drawing) return;
+                drawing = false;
+                ctx.globalCompositeOperation = 'source-over';
+                captureCanvas();
+            }
+
+            canvas.addEventListener('mousedown', startDraw);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', endDraw);
+            canvas.addEventListener('mouseleave', endDraw);
+            canvas.addEventListener('touchstart', startDraw, { passive: false });
+            canvas.addEventListener('touchmove', draw, { passive: false });
+            canvas.addEventListener('touchend', endDraw);
+            canvas.addEventListener('touchcancel', endDraw);
+
+            // ---------- Toolbar ----------
+            penBtn.addEventListener('click', () => {
+                currentTool = 'pen';
+                penBtn.style.outline = '2px solid var(--accent)';
+                eraserBtn.style.outline = 'none';
+            });
+            eraserBtn.addEventListener('click', () => {
+                currentTool = 'eraser';
+                eraserBtn.style.outline = '2px solid var(--accent)';
+                penBtn.style.outline = 'none';
+            });
+
+            sizeSelect.addEventListener('change', (e) => {
+                currentSize = parseInt(e.target.value, 10);
+            });
+
+            colorSwatches.forEach(sw => {
+                sw.addEventListener('click', () => {
+                    colorSwatches.forEach(s => s.classList.remove('active'));
+                    sw.classList.add('active');
+                    currentColor = sw.dataset.color;
+                    if (currentTool === 'eraser') {
+                        currentTool = 'pen';
+                        penBtn.style.outline = '2px solid var(--accent)';
+                        eraserBtn.style.outline = 'none';
+                    }
+                });
+            });
+
+            undoBtn.addEventListener('click', () => {
+                if (canvasStrokes.length === 0) return;
+                const last = canvasStrokes.pop();
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                ctx.putImageData(last, 0, 0);
+                const dpr = window.devicePixelRatio || 1;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                captureCanvas();
+            });
+
+            clearCanvasBtn.addEventListener('click', () => {
+                canvasStrokes = [];
+                handwrittenNotes[activeList] = null;
+                saveNotesToLocalStorage();
+                redrawCanvasFromSaved();
+                updateNotesCount();
+            });
+
+            clearNotesBtn.addEventListener('click', () => {
+                if (!confirm('Clear all notes (typed and handwritten) for this checklist?')) return;
+                typedNotes[activeList] = '';
+                typedNotesEl.value = '';
+                handwrittenNotes[activeList] = null;
+                canvasStrokes = [];
+                saveNotesToLocalStorage();
+                redrawCanvasFromSaved();
+                updateNotesCount();
+            });
+
+            // ---------- SNAPSHOT ----------
+            snapshotBtn.addEventListener('click', () => {
+                const list = CHECKLIST_DATA[activeList];
+                const checkedSet = checkedState[activeList];
+
+                const pad = 24;
+                const headerH = 50;
+                const checklistLineH = 30;
+                const typedNotesH = 200;
+                const canvasPreviewH = 220;
+                const totalH = pad + headerH + (list.items.length * checklistLineH) + 20 + typedNotesH + 20 + canvasPreviewH + pad;
+                const W = 800;
+
+                const off = document.createElement('canvas');
+                off.width = W;
+                off.height = totalH;
+                const c = off.getContext('2d');
+
+                const styles = getComputedStyle(document.documentElement);
+                const getVar = (name, fallback) => styles.getPropertyValue(name).trim() || fallback;
+                const bgColor = getVar('--panel-bg', '#ffffff');
+                const textColor = getVar('--text-primary', '#0b2b3d');
+                const subText = getVar('--text-secondary', '#2c4b5e');
+                const accent = getVar('--accent', '#3a7ca5');
+                const itemText = getVar('--item-text', '#153b4b');
+                const notesBg = getVar('--notes-input-bg', '#f9fcff');
+                const canvasBg = getVar('--notes-canvas-bg', '#ffffff');
+                const doneColor = getVar('--item-done-text', '#577a6b');
+
+                c.fillStyle = bgColor;
+                c.fillRect(0, 0, W, totalH);
+
+                const left = pad + 8;
+                c.fillStyle = textColor;
+                c.font = 'bold 26px system-ui, sans-serif';
+                c.fillText(`${list.icon} ${list.title} Checklist`, left, pad + 34);
+
+                c.font = '14px system-ui, sans-serif';
+                c.fillStyle = subText;
+                c.fillText(new Date().toLocaleString(), left, pad + 58);
+
+                let y = pad + 90;
+                c.font = '16px system-ui, sans-serif';
+                list.items.forEach((item) => {
+                    const checked = checkedSet.has(item.id);
+                    const bx = left;
+                    const by = y - 14;
+                    c.strokeStyle = accent;
+                    c.lineWidth = 2;
+                    c.strokeRect(bx, by, 18, 18);
+                    if (checked) {
+                        c.fillStyle = accent;
+                        c.fillRect(bx + 3, by + 3, 12, 12);
+                        c.strokeStyle = bgColor;
+                        c.lineWidth = 2;
+                        c.beginPath();
+                        c.moveTo(bx + 4, by + 9);
+                        c.lineTo(bx + 8, by + 13);
+                        c.lineTo(bx + 15, by + 5);
+                        c.stroke();
+                    }
+                    c.fillStyle = checked ? doneColor : itemText;
+                    c.font = '16px system-ui, sans-serif';
+                    c.fillText(item.text, left + 30, y);
+                    if (checked) {
+                        const tw = c.measureText(item.text).width;
+                        c.strokeStyle = doneColor;
+                        c.lineWidth = 1.5;
+                        c.beginPath();
+                        c.moveTo(left + 30, y - 5);
+                        c.lineTo(left + 30 + tw, y - 5);
+                        c.stroke();
+                    }
+                    y += checklistLineH;
+                });
+
+                y += 15;
+                c.fillStyle = textColor;
+                c.font = 'bold 18px system-ui, sans-serif';
+                c.fillText('📝 Typed notes', left, y);
+                y += 8;
+
+                const tnH = typedNotesH - 30;
+                c.fillStyle = notesBg;
+                c.fillRect(left, y, W - left * 2, tnH);
+                c.strokeStyle = subText;
+                c.lineWidth = 1;
+                c.strokeRect(left, y, W - left * 2, tnH);
+
+                c.fillStyle = itemText;
+                c.font = '15px system-ui, sans-serif';
+                const typedText = typedNotes[activeList] || '';
+                const maxWidth = W - left * 2 - 20;
+                const words = typedText.split(/\s+/);
+                let line = '';
+                let ty = y + 24;
+                const lineH = 20;
+                for (let n = 0; n < words.length; n++) {
+                    const testLine = line + words[n] + ' ';
+                    const metrics = c.measureText(testLine);
+                    if (metrics.width > maxWidth && n > 0) {
+                        c.fillText(line.trim(), left + 10, ty);
+                        line = words[n] + ' ';
+                        ty += lineH;
+                        if (ty > y + tnH - 10) break;
+                    } else {
+                        line = testLine;
+                    }
+                }
+                if (line.trim()) c.fillText(line.trim(), left + 10, ty);
+
+                y += tnH + 20;
+
+                c.fillStyle = textColor;
+                c.font = 'bold 18px system-ui, sans-serif';
+                c.fillText('✍️ Handwritten notes', left, y);
+                y += 10;
+
+                const cw = W - left * 2;
+                const ch = canvasPreviewH - 40;
+                c.fillStyle = canvasBg;
+                c.fillRect(left, y, cw, ch);
+                c.strokeStyle = subText;
+                c.lineWidth = 1;
+                c.strokeRect(left, y, cw, ch);
+
+                const dataUrl = handwrittenNotes[activeList];
+                function download(canvasEl) {
+                    const link = document.createElement('a');
+                    const safeTitle = list.title.toLowerCase().replace(/\s+/g, '-');
+                    const ts = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
+                    link.download = `checklist-${safeTitle}-notes-${ts}.png`;
+                    link.href = canvasEl.toDataURL('image/png');
+                    link.click();
+                }
+
+                if (dataUrl) {
+                    const img = new Image();
+                    img.onload = () => {
+                        c.drawImage(img, left, y, cw, ch);
+                        download(off);
+                    };
+                    img.onerror = () => download(off);
+                    img.src = dataUrl;
+                } else {
+                    c.fillStyle = subText;
+                    c.font = 'italic 15px system-ui, sans-serif';
+                    c.fillText('(no handwriting)', left + 20, y + ch / 2);
+                    download(off);
+                }
+            });
+
+            // ---------- RESET ----------
+            resetCurrentBtn.addEventListener('click', () => {
+                if (!confirm(`Reset checklist for "${CHECKLIST_DATA[activeList].title}"?`)) return;
+                checkedState[activeList] = new Set();
+                saveStateToLocalStorage();
+                renderChecklist();
+            });
+
+            resetAllBtn.addEventListener('click', () => {
+                if (!confirm('Reset ALL checklists? Notes will be kept.')) return;
+                checkedState = { preflight: new Set(), postflight: new Set(), secure: new Set() };
+                saveStateToLocalStorage();
+                renderChecklist();
+            });
+
+            // ---------- INIT ----------
+            function init() {
+                initTheme();
+                loadStateFromLocalStorage();
+                loadNotesFromLocalStorage();
+
+                showChecklistView();
+
+                penBtn.style.outline = '2px solid var(--accent)';
+                eraserBtn.style.outline = 'none';
+
+                window.addEventListener('resize', () => {
+                    clearTimeout(window.__canvasResizeTimer);
+                    window.__canvasResizeTimer = setTimeout(() => {
+                        if (notesPageOpen) resizeCanvas();
+                    }, 200);
+                });
+            }
+
+            init();
+        })();
+    </script>
+</body>
+</html>
